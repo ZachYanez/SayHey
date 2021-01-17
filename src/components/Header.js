@@ -2,7 +2,6 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -34,7 +33,11 @@ export default function Header() {
           <FormControl name="message" type="text" placeholder="Message" onChange={handleClick} className="mr-sm-2" />
         </Form>
       </Navbar>
-      <Content/>
+      <div>
+      <Content
+       message={message}
+      />
+      </div>
     </div>
   );
 }
