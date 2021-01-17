@@ -6,8 +6,14 @@ import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
+import {useState} from 'react'
+import Content from './Content'
 
 export default function Header() {
+
+  const {message, setMessage} = useState()
+
+
   return (
     <div>
       <Navbar bg="l" variant="light" fixed="top">
@@ -22,9 +28,12 @@ export default function Header() {
         </Nav>
         <Form inline>
           <FormControl type="text" placeholder="Message" className="mr-sm-2" />
-          <Button variant="outline-primary">Say It</Button>
+          <Button onclick={(e)=> setMessage(e.target.value)} variant="outline-primary">Say It</Button>
         </Form>
       </Navbar>
+      <Content/>
     </div>
   );
 }
+
+
