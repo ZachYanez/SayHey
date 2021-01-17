@@ -11,8 +11,9 @@ import Content from './Content'
 
 export default function Header() {
 
-  const {message, setMessage} = useState()
-
+  // const {message, setMessage} = useState()
+   
+  handleClick = (e) => {console.log(e.target.value)}
 
   return (
     <div>
@@ -28,7 +29,7 @@ export default function Header() {
         </Nav>
         <Form inline>
           <FormControl type="text" placeholder="Message" className="mr-sm-2" />
-          <Button onclick={(e)=> setMessage(e.target.value)} variant="outline-primary">Say It</Button>
+          <Button onclick={handleClick} variant="outline-primary">Say It</Button>
         </Form>
       </Navbar>
       <Content/>
