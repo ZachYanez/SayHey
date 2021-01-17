@@ -12,7 +12,7 @@ export default function Header() {
 
   const [message, setMessage]=useState();
 
-  function handleClick(e){
+  function handleChange(e){
   e.preventDefault()
   setMessage(e.target.value)
   console.log(e.target.value)}
@@ -30,7 +30,7 @@ export default function Header() {
           </DropdownButton>
         </Nav>
         <Form inline>
-          <FormControl name="message" type="text" placeholder="Message" onChange={handleClick} className="mr-sm-2" />
+          <FormControl name="message" type="text" placeholder="Message" onChange={handleChange} className="mr-sm-2" />
         </Form>
       </Navbar>
       <div>
