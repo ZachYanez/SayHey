@@ -11,9 +11,12 @@ import Content from './Content'
 
 export default function Header() {
 
-  // const {message, setMessage} = useState()
-   
-  handleClick = (e) => {console.log(e.target.value)}
+  const [message, setMessage]=useState();
+
+  function handleClick(e){
+  e.preventDefault()
+  setMessage(e.target.value)
+  console.log(e.target.value)}
 
   return (
     <div>
@@ -28,8 +31,8 @@ export default function Header() {
           </DropdownButton>
         </Nav>
         <Form inline>
-          <FormControl type="text" placeholder="Message" className="mr-sm-2" />
-          <Button onclick={handleClick} variant="outline-primary">Say It</Button>
+          <FormControl name="message" type="text" placeholder="Message" onChange={handleClick} className="mr-sm-2" />
+          <Button variant="outline-primary">Say It</Button>
         </Form>
       </Navbar>
       <Content/>
