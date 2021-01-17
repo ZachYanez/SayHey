@@ -32,7 +32,6 @@ export default function Header() {
         </Nav>
         <Form inline>
           <FormControl name="message" type="text" placeholder="Message" onChange={handleClick} className="mr-sm-2" />
-          <Button variant="outline-primary">Say It</Button>
         </Form>
       </Navbar>
       <Content/>
