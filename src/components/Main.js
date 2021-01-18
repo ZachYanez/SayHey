@@ -8,6 +8,8 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import {useState} from 'react'
 import Content from './Content'
 
+
+
 export default function Main() {
 
   const [message, setMessage]=useState();
@@ -38,6 +40,7 @@ export default function Main() {
       <Content 
       message={message}/>
       </div>
+      
     </div>
   );
 }
