@@ -20,7 +20,7 @@ export default function Main() {
   return (
     <div>
       <Navbar bg="l" variant="light" fixed="top">
-        <Navbar.Brand>HeyFrom6</Navbar.Brand>
+        <Navbar.Brand>sayHey</Navbar.Brand>
         <Nav className="mr-auto">
           <DropdownButton id="dropdown-item-button" title="Presets">
             <Dropdown.Item onClick={handleChange} value="Hey, I'm Zach" type="text" as="button">Hey, I'm Zach</Dropdown.Item>
