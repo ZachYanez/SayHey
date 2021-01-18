@@ -24,10 +24,10 @@ export default function Header() {
         <Navbar.Brand>HeyFrom6</Navbar.Brand>
         <Nav className="mr-auto">
           <DropdownButton id="dropdown-item-button" title="Presets">
-            <Dropdown.Item name="message" onClick={handleChange} type="text" as="button">Hey, I'm Zach</Dropdown.Item>
-            <Dropdown.Item name="message" onClick={handleChange} type="text" as="button">512-740-3455</Dropdown.Item>
-            <Dropdown.Item  name="message" onClick={handleChange} type="text" as="button">What's your name?</Dropdown.Item>
-            <Dropdown.Item name="message" onClick={handleChange} type="text" as="button">Something else</Dropdown.Item>
+            <Dropdown.Item name="message" onClick={handleChange} type="text" value="Hey, I'm Zach" as="button">Hey, I'm Zach</Dropdown.Item>
+            <Dropdown.Item name="message" onClick={handleChange} type="text" value="512-740-3455" as="button">512-740-3455</Dropdown.Item>
+            <Dropdown.Item  name="message" onClick={handleChange} type="text" value="What's your name?" as="button">What's your name?</Dropdown.Item>
+            <Dropdown.Item name="message" onClick={handleChange} type="text" value="Would you like to join me?" as="button">Would you like to join me?</Dropdown.Item>
           </DropdownButton>
         </Nav>
         <Form inline>
