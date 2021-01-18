@@ -12,7 +12,7 @@ export default function Main() {
 
   const [message, setMessage]=useState();
 
-  function handleClick(e){
+  function handleChange(e){
   e.preventDefault()
   setMessage(e.target.value)
   console.log(e.target.value)}
@@ -23,17 +23,21 @@ export default function Main() {
         <Navbar.Brand>HeyFrom6</Navbar.Brand>
         <Nav className="mr-auto">
           <DropdownButton id="dropdown-item-button" title="Presets">
-            <Dropdown.Item as="button">Hey, I'm Zach</Dropdown.Item>
-            <Dropdown.Item as="button">512-740-3455</Dropdown.Item>
-            <Dropdown.Item as="button">What's your name?</Dropdown.Item>
-            <Dropdown.Item as="button">Something else</Dropdown.Item>
+            <Dropdown.Item onClick={handleChange} value="Hey, I'm Zach" type="text" as="button">Hey, I'm Zach</Dropdown.Item>
+            <Dropdown.Item onClick={handleChange}  value="512-740-3455" type="text" as="button">512-740-3455</Dropdown.Item>
+            <Dropdown.Item onClick={handleChange}  value="What's your name?" type="text"as="button">What's your name?</Dropdown.Item>
+            <Dropdown.Item onClick={handleChange}  value="Something else" type="text" as="button">Something else</Dropdown.Item>
           </DropdownButton>
         </Nav>
         <Form inline>
-          <FormControl name="message" type="text" placeholder="Message" onChange={handleClick} className="mr-sm-2" />
+          <FormControl name="message" type="text" placeholder="Message" onChange={handleChange} className="mr-sm-2" />
         </Form>
       </Navbar>
-      <Content/>
+      <div className="buffer"/>
+      <div className="content justify-content-center row"> 
+      <Content 
+      message={message}/>
+      </div>
     </div>
   );
 }
