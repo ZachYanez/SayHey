@@ -4,8 +4,14 @@
   color: grey;
 }
 
+.content{
+ margin-top: 50%;
+ font-size: 60pt;
+}
 
-
+.space{
+  margin-top: 50%;
+}
 
 /* .App {
   text-align: center;
