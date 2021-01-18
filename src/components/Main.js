@@ -26,7 +26,7 @@ export default function Main() {
             <Dropdown.Item onClick={handleChange} value="Hey, I'm Zach" type="text" as="button">Hey, I'm Zach</Dropdown.Item>
             <Dropdown.Item onClick={handleChange}  value="512-740-3455" type="text" as="button">512-740-3455</Dropdown.Item>
             <Dropdown.Item onClick={handleChange}  value="What's your name?" type="text"as="button">What's your name?</Dropdown.Item>
-            <Dropdown.Item onClick={handleChange}  value="Something else" type="text" as="button">Something else</Dropdown.Item>
+            <Dropdown.Item onClick={handleChange}  value="May I sit with you?" type="text" as="button">May I sit with you?</Dropdown.Item>
           </DropdownButton>
         </Nav>
         <Form inline>
