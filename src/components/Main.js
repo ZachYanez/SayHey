@@ -2,14 +2,13 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import {useState} from 'react'
 import Content from './Content'
 
-export default function Header() {
+export default function Main() {
 
   const [message, setMessage]=useState();
 
