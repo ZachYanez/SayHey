@@ -2,6 +2,11 @@
   "name": "hefrom6",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://zachyanez.github.io/heyFrom6,",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZachYanez/heyFrom6"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
@@ -26,6 +31,8 @@
     "workbox-streams": "^5.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -48,5 +55,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
   }
 }
