@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/heyFrom6/static/css/main.ea79cbea.chunk.css",
-    "main.js": "/heyFrom6/static/js/main.0bb238b9.chunk.js",
-    "main.js.map": "/heyFrom6/static/js/main.0bb238b9.chunk.js.map",
-    "runtime-main.js": "/heyFrom6/static/js/runtime-main.56268565.js",
-    "runtime-main.js.map": "/heyFrom6/static/js/runtime-main.56268565.js.map",
-    "static/css/2.ae9f1eb3.chunk.css": "/heyFrom6/static/css/2.ae9f1eb3.chunk.css",
-    "static/js/2.31a794bb.chunk.js": "/heyFrom6/static/js/2.31a794bb.chunk.js",
-    "static/js/2.31a794bb.chunk.js.map": "/heyFrom6/static/js/2.31a794bb.chunk.js.map",
-    "static/js/3.38dcbd23.chunk.js": "/heyFrom6/static/js/3.38dcbd23.chunk.js",
-    "static/js/3.38dcbd23.chunk.js.map": "/heyFrom6/static/js/3.38dcbd23.chunk.js.map",
-    "index.html": "/heyFrom6/index.html",
-    "service-worker.js": "/heyFrom6/service-worker.js",
-    "service-worker.js.map": "/heyFrom6/service-worker.js.map",
-    "static/css/2.ae9f1eb3.chunk.css.map": "/heyFrom6/static/css/2.ae9f1eb3.chunk.css.map",
-    "static/css/main.ea79cbea.chunk.css.map": "/heyFrom6/static/css/main.ea79cbea.chunk.css.map",
-    "static/js/2.31a794bb.chunk.js.LICENSE.txt": "/heyFrom6/static/js/2.31a794bb.chunk.js.LICENSE.txt"
+    "main.css": "/SayHey/static/css/main.ea79cbea.chunk.css",
+    "main.js": "/SayHey/static/js/main.9fbe5e91.chunk.js",
+    "main.js.map": "/SayHey/static/js/main.9fbe5e91.chunk.js.map",
+    "runtime-main.js": "/SayHey/static/js/runtime-main.9d5e659d.js",
+    "runtime-main.js.map": "/SayHey/static/js/runtime-main.9d5e659d.js.map",
+    "static/css/2.ae9f1eb3.chunk.css": "/SayHey/static/css/2.ae9f1eb3.chunk.css",
+    "static/js/2.31a794bb.chunk.js": "/SayHey/static/js/2.31a794bb.chunk.js",
+    "static/js/2.31a794bb.chunk.js.map": "/SayHey/static/js/2.31a794bb.chunk.js.map",
+    "static/js/3.38dcbd23.chunk.js": "/SayHey/static/js/3.38dcbd23.chunk.js",
+    "static/js/3.38dcbd23.chunk.js.map": "/SayHey/static/js/3.38dcbd23.chunk.js.map",
+    "index.html": "/SayHey/index.html",
+    "service-worker.js": "/SayHey/service-worker.js",
+    "service-worker.js.map": "/SayHey/service-worker.js.map",
+    "static/css/2.ae9f1eb3.chunk.css.map": "/SayHey/static/css/2.ae9f1eb3.chunk.css.map",
+    "static/css/main.ea79cbea.chunk.css.map": "/SayHey/static/css/main.ea79cbea.chunk.css.map",
+    "static/js/2.31a794bb.chunk.js.LICENSE.txt": "/SayHey/static/js/2.31a794bb.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.56268565.js",
+    "static/js/runtime-main.9d5e659d.js",
     "static/css/2.ae9f1eb3.chunk.css",
     "static/js/2.31a794bb.chunk.js",
     "static/css/main.ea79cbea.chunk.css",
-    "static/js/main.0bb238b9.chunk.js"
+    "static/js/main.9fbe5e91.chunk.js"
   ]
 }
