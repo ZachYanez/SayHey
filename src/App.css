@@ -22,7 +22,9 @@ color: black !important;
   color: black !important;
 }
 
-
+.messagePadding{
+ padding: 3% ; 
+}
 
 
 /* .App {
