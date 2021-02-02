@@ -38,11 +38,10 @@ export default function Main() {
       const { add } = useIndexedDB('presets');
 
       
-
-        const indexClick = () => {
-        add({ message: '' }).then(
+        const indexClick = (event) => {
+        add({ message: "" }).then(
           event => {
-            console.log('Preset Indexed: ');
+            console.log('Preset Indexed:' );
           },
           error => {
             console.log(error);
@@ -74,7 +73,7 @@ export default function Main() {
       aria-describedby="basic-addon2"
     />
     <InputGroup.Append>
-      <InputGroup.Text onClick={handleClose} onClick={AddPresets} value={this} as="button" id="basic-addon2">Save</InputGroup.Text>
+      <InputGroup.Text onClick={handleClose} onClick={AddPresets} id="basic-addon2">Save</InputGroup.Text>
     </InputGroup.Append>
   </InputGroup>
         </Modal.Body>
@@ -88,7 +87,7 @@ export default function Main() {
           </DropdownButton>
         </Nav>
         <Form inline>
-          <FormControl name="message" type="text" placeholder="Message" value="" onChange={handleChange} className="mr-sm-2" />
+          <FormControl name="message" type="text" placeholder="Message" value={this} onChange={handleChange} className="mr-sm-2" />
         </Form>
       </Navbar>
       <div className="buffer"/>
