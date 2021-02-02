@@ -1,3 +1,4 @@
+import React from "react";
 import { useIndexedDB } from 'react-indexed-db'
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -10,7 +11,6 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import {useState, useEffect} from 'react'
 import Content from './Content'
 
-
 const INITIAL_PRESETS = [
     "Hey, I'm Zach",
     "512-740-3455",
@@ -20,7 +20,6 @@ const INITIAL_PRESETS = [
 
 export default function Main() {
 
- 
   const { add, getAll } = useIndexedDB("presets");
 
 
@@ -53,18 +52,21 @@ export default function Main() {
   e.preventDefault()
   setMessage(e.target.value)
   console.log(e.target.value)}
+
+
   function handlePreset(e){
     setPreset(e.target.value)
   }
+
 // Modal 
     const [show, setShow] = useState(false);
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+
     function AddPresets () {
 
-     
         const indexClick = (event) => {
         add({ message: preset }).then(
            event => {
@@ -91,6 +93,7 @@ export default function Main() {
         <Navbar.Brand>sayHey</Navbar.Brand>
         <Nav className="mr-auto">
           <DropdownButton id="dropdown-item-button" title="Presets">
+            
           <Dropdown.Item onClick={handleShow} type="text" as="button">Add Presets +</Dropdown.Item>
           <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
