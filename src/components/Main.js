@@ -1,4 +1,3 @@
-import React from "react";
 import { useIndexedDB } from 'react-indexed-db'
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -8,14 +7,21 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Modal from 'react-bootstrap/Modal'
 import InputGroup from 'react-bootstrap/InputGroup'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Content from './Content'
 
 
+const INITIAL_PRESETS = [
+    "Hey, I'm Zach",
+    "512-740-3455",
+    "What's your name?",
+    "May I sit with you?",
+];
 
 export default function Main() {
 
-  const db = useIndexedDB('presets');
+ 
+  const { add, getAll } = useIndexedDB("presets");
 
 
   // Message input & preset 
@@ -23,30 +29,46 @@ export default function Main() {
 
   const [preset, setPreset] = useState("");
 
+  const [presets, setPresets] = useState(INITIAL_PRESETS);
+
+  // catch any presets left in db from previous session on initial render only https://reactjs.org/docs/hooks-effect.html
+  useEffect(() => {
+    // https://www.npmjs.com/package/react-indexed-db#getall
+    getAll().then((presetDbDocument) => {
+      console.log("presetDbDocument ", presetDbDocument);
+      if (presetDbDocument) {
+        console.log(
+          "presets found in DB, adding to list: ",
+          presetDbDocument.message
+        );
+
+        const indexedPresets = presetDbDocument.map((p) => p.message);
+        setPresets([...initialPresets, ...indexedPresets]);
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   function handleChange(e){
   e.preventDefault()
   setMessage(e.target.value)
   console.log(e.target.value)}
-
-
   function handlePreset(e){
     setPreset(e.target.value)
   }
-
 // Modal 
     const [show, setShow] = useState(false);
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-
     function AddPresets () {
 
-      const { add } = useIndexedDB('presets');
+     
         const indexClick = (event) => {
         add({ message: preset }).then(
            event => {
-            console.log('Preset Indexed:' );
+            console.log("Preset Indexed: ", preset);
           },
           error => {
             console.log(error);
@@ -55,8 +77,13 @@ export default function Main() {
       };
       indexClick();
       handleClose();
+
+      // the async-safe way to build upon previous state vals and mitigate overwrite risk https://reactjs.org/docs/hooks-reference.html#functional-updates
+      setPresets((prevPresets) => {
+        return [...prevPresets, preset];
+      });
     };
-    
+
 
   return (
     <div>
@@ -64,7 +91,6 @@ export default function Main() {
         <Navbar.Brand>sayHey</Navbar.Brand>
         <Nav className="mr-auto">
           <DropdownButton id="dropdown-item-button" title="Presets">
-
           <Dropdown.Item onClick={handleShow} type="text" as="button">Add Presets +</Dropdown.Item>
           <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -85,11 +111,18 @@ export default function Main() {
   </InputGroup>
         </Modal.Body>
       </Modal>
-
-            <Dropdown.Item onClick={handleChange} value="Hey, I'm Zach" type="text" as="button">Hey, I'm Zach</Dropdown.Item>
-            <Dropdown.Item onClick={handleChange}  value="512-740-3455" type="text" as="button">512-740-3455</Dropdown.Item>
-            <Dropdown.Item onClick={handleChange}  value="What's your name?" type="text"as="button">What's your name?</Dropdown.Item>
-            <Dropdown.Item onClick={handleChange}  value="May I sit with you?" type="text" as="button">May I sit with you?</Dropdown.Item>
+      {/* js in jsx https://reactjs.org/docs/jsx-in-depth.html#javascript-expressions-as-children */}
+      {presets.map((message) => (
+        <Dropdown.Item
+          key={message}
+          onClick={handleChange}
+          value={message}
+          type="text"
+          as="button"
+        >
+          {message}
+        </Dropdown.Item>
+      ))}
           </DropdownButton>
         </Nav>
         <Form inline>
@@ -105,4 +138,3 @@ export default function Main() {
     </div>
   );
 }
-
