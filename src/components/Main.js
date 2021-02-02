@@ -21,10 +21,17 @@ export default function Main() {
   // Message input & preset 
   const [message, setMessage]=useState();
 
+  const [preset, setPreset] = useState("");
+
   function handleChange(e){
   e.preventDefault()
   setMessage(e.target.value)
   console.log(e.target.value)}
+
+
+  function handlePreset(e){
+    setPreset(e.target.value)
+  }
 
 // Modal 
     const [show, setShow] = useState(false);
@@ -36,11 +43,9 @@ export default function Main() {
     function AddPresets () {
 
       const { add } = useIndexedDB('presets');
-
-      
         const indexClick = (event) => {
-        add({ message: "" }).then(
-          event => {
+        add({ message: preset }).then(
+           event => {
             console.log('Preset Indexed:' );
           },
           error => {
@@ -68,17 +73,18 @@ export default function Main() {
         <Modal.Body>
         <InputGroup className="mb-3">
     <FormControl
+      onChange={handlePreset}
+      value={this}
       placeholder="Message"
       aria-label="Message Preset"
       aria-describedby="basic-addon2"
     />
     <InputGroup.Append>
-      <InputGroup.Text onClick={handleClose} onClick={AddPresets} id="basic-addon2">Save</InputGroup.Text>
+      <InputGroup.Text onClick={AddPresets} id="basic-addon2">Save</InputGroup.Text>
     </InputGroup.Append>
   </InputGroup>
         </Modal.Body>
       </Modal>
-
 
             <Dropdown.Item onClick={handleChange} value="Hey, I'm Zach" type="text" as="button">Hey, I'm Zach</Dropdown.Item>
             <Dropdown.Item onClick={handleChange}  value="512-740-3455" type="text" as="button">512-740-3455</Dropdown.Item>
