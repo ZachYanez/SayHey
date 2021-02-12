@@ -70,15 +70,22 @@ export default function Main() {
 
     // the async-safe way to build upon previous state vals and mitigate overwrite risk https://reactjs.org/docs/hooks-reference.html#functional-updates
     setPresets((prevPresets) => {
-      return [...prevPresets, preset];
+      const presetsCopy = [...prevPresets];
+      const numberToDelete = 1;
+      const indexOfMessageToDelete = presetsCopy.indexOf(message);
+      presetsCopy.splice(indexOfMessageToDelete, numberToDelete);
+      return presetsCopy;
     });
   }
 
-  function DeletePreset(id) {
-    deleteRecord(id).then((event) => {
-      console.log("Deleted Preset :" + id);
-      alert("Deleted!");
-    });
+  function DeletePreset(message) {
+    getAll().then((dbRecords) => {
+      for (const record of dbRecords) {
+        if (record.message === message){
+          deleteRecord(record.id).then((event) => {
+            alert("Deleted!")
+          })
+        }}});
   }
 
   return (
@@ -113,16 +120,17 @@ export default function Main() {
             </Modal>
             {/* js in jsx https://reactjs.org/docs/jsx-in-depth.html#javascript-expressions-as-children */}
             {presets.map((preset) => {
-              const {id, message} = preset;
+              
               return (
               <Dropdown.Item 
-              key={id} 
+              key={preset} 
               onClick={handleChange} 
               value={preset} 
               type="text" 
               as="button">
                 {preset}
-                <a onClick={() => {DeletePreset(id);
+                <a onClick={() => {
+                  DeletePreset(message);
                  }} className="deleteBtn" as="button">
                   x
                 </a>
