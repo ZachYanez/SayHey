@@ -56,7 +56,6 @@ export default function Main() {
     } catch (err) {
       console.error(err);
     }
-    setMessage("") 
     handleClose();
   }
 
@@ -110,13 +109,13 @@ export default function Main() {
               return (
                 <Dropdown.Item
                   key={message}
-                  onClick={handleChange}
+                  onClick={() => setMessage(message)}
                   value={message}
                   type="text"
                   as="button"
                 >
                   {message}
-                  <span
+                  <a
                     onClick={() => {
                       deletePreset(id);
                     }}
@@ -124,7 +123,7 @@ export default function Main() {
                     as="button"
                   >
                     x
-                  </span>
+                  </a>
                 </Dropdown.Item>
               );
             })}
@@ -135,7 +134,7 @@ export default function Main() {
             name="message"
             type="text"
             placeholder="Message"
-            value={this}
+            value={message}
             onChange={handleChange}
             className="mr-sm-2"
           />
