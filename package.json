@@ -1,11 +1,11 @@
 {
-  "name": "hefrom6",
+  "name": "SayHey",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://zachyanez.github.io/heyFrom6/",
+  "homepage": "http://zachyanez.github.io/SayHey/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zachyanez/heyFrom6/"
+    "url": "https://github.com/zachyanez/SayHey/"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
@@ -15,6 +15,7 @@
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",
     "react-dom": "^17.0.1",
+    "react-indexed-db": "^1.0.12",
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.4",

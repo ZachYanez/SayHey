@@ -12,6 +12,20 @@
   margin-top: 20%;
 }
 
+.deleteBtn{
+  padding-left: 5%;
+  width: 15px;
+  border-radius: 25%;
+  float: center ;
+  align-items: center; 
+}
+
+/* .deleteBtn:hover{
+  background-color: black;
+  color: white;
+} */
+
+
 .footerLink{
 background-color: transparent !important;
 font-size:small;
@@ -22,7 +36,9 @@ color: black !important;
   color: black !important;
 }
 
-
+.messagePadding{
+ padding: 3% ; 
+}
 
 
 /* .App {
