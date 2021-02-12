@@ -13,12 +13,17 @@
 }
 
 .deleteBtn{
-  width: 10px;
-  float: right;
-  justify-content: right;
-  border-radius: 40%;
-  align-items: center;
+  padding-left: 2%;
+  width: 15px;
+  border-radius: 25%;
+  float: center ;
+  align-items: center; 
 }
+
+/* .deleteBtn:hover{
+  background-color: black;
+  color: white;
+} */
 
 
 .footerLink{
