@@ -76,7 +76,6 @@ export default function Main() {
 
   function DeletePreset(id) {
     deleteRecord(id).then((event) => {
-      event.preventDefault();
       console.log("Deleted Preset :" + id);
       alert("Deleted!");
     });
