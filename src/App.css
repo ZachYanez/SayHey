@@ -12,6 +12,13 @@
   margin-top: 20%;
 }
 
+.deleteBtn{
+  width: 10px;
+  float: right;
+  justify-content: right;
+  border-radius: 40%;
+  align-items: center;
+}
 
 
 .footerLink{

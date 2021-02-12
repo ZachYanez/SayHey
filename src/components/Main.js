@@ -11,16 +11,14 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import {useState, useEffect} from 'react'
 import Content from './Content'
 
-const INITIAL_PRESETS = [
-    "Hey, I'm Zach",
-    "512-740-3455",
-    "What's your name?",
-    "May I sit with you?",
-];
 
 export default function Main() {
 
-  const { add, getAll } = useIndexedDB("presets");
+  const { add, getAll, deleteRecord } = useIndexedDB("presets");
+  
+  const INITIAL_PRESETS = [
+    "Hey"
+];
 
 
   // Message input & preset 
@@ -34,15 +32,14 @@ export default function Main() {
   useEffect(() => {
     // https://www.npmjs.com/package/react-indexed-db#getall
     getAll().then((presetDbDocument) => {
-      console.log("presetDbDocument ", presetDbDocument);
+      console.log("presetDbDocument ", presetDbDocument.message);
       if (presetDbDocument) {
         console.log(
           "presets found in DB, adding to list: ",
           presetDbDocument.message
         );
-
         const indexedPresets = presetDbDocument.map((p) => p.message);
-        setPresets([...initialPresets, ...indexedPresets]);
+        setPresets([...INITIAL_PRESETS,...indexedPresets]);
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -65,6 +62,7 @@ export default function Main() {
     const handleShow = () => setShow(true);
 
 
+    // Adds to DB. Called in handlePreset();
     function AddPresets () {
 
         const indexClick = (event) => {
@@ -86,6 +84,17 @@ export default function Main() {
       });
     };
 
+    function DeletePreset(e) {
+
+      var deleteKey = e.target.key
+
+      deleteRecord(deleteKey).then(event => {
+        console.log("Deleted Preset")
+        alert('Deleted!')
+      })
+        console.log("Deleted Preset")
+      }
+    
 
   return (
     <div>
@@ -93,8 +102,8 @@ export default function Main() {
         <Navbar.Brand>sayHey</Navbar.Brand>
         <Nav className="mr-auto">
           <DropdownButton id="dropdown-item-button" title="Presets">
-            
-          <Dropdown.Item onClick={handleShow} type="text" as="button">Add Presets +</Dropdown.Item>
+
+          <Dropdown.Item onClick={handleShow} type="text" as="button">Add Preset +</Dropdown.Item>
           <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Add Preset</Modal.Title>
@@ -124,6 +133,7 @@ export default function Main() {
           as="button"
         >
           {message}
+          <span onClick={DeletePreset} className="deleteBtn" as="button">x</span>
         </Dropdown.Item>
       ))}
           </DropdownButton>
