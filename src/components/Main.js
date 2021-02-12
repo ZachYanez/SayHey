@@ -12,28 +12,21 @@ import { useState, useEffect } from "react";
 import Content from "./Content";
 
 export default function Main() {
+  const INITIAL_PRESETS = [{ id: -1, message: "Hey" }];
   const { add, getAll, deleteRecord } = useIndexedDB("presets");
 
-  const INITIAL_PRESETS = ["Hey"];
-
-  // Message input & preset
   const [message, setMessage] = useState();
-
   const [preset, setPreset] = useState("");
-
   const [presets, setPresets] = useState(INITIAL_PRESETS);
 
-  // catch any presets left in db from previous session on initial render only https://reactjs.org/docs/hooks-effect.html
   useEffect(() => {
-    // https://www.npmjs.com/package/react-indexed-db#getall
-    getAll().then((presetDbDocument) => {
-      console.log("presetDbDocument ", presetDbDocument.message);
-      if (presetDbDocument) {
-        console.log("presets found in DB, adding to list: ", presetDbDocument.message);
-        const indexedPresets = presetDbDocument.map((p) => p.message);
-        setPresets([...INITIAL_PRESETS, ...indexedPresets]);
-      }
-    });
+    const populateStateWithDbRecords = async () => {
+      const records = await getAll();
+      console.log("records found in DB, udpating state: ", records);
+      setPresets([...INITIAL_PRESETS, ...records]);
+    };
+
+    populateStateWithDbRecords();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -47,45 +40,39 @@ export default function Main() {
     setPreset(e.target.value);
   }
 
-  // Modal
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  // Adds to DB. Called in handlePreset();
-  function AddPresets() {
-    const indexClick = (event) => {
-      add({ message: preset }).then(
-        (event) => {
-          console.log("Preset Indexed: ", preset);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    };
-    indexClick();
-    handleClose();
+  async function AddPresets() {
+    try {
+      const generatedId = await add({ message: preset });
+      console.log("Added to db: ", { id: generatedId, message: preset });
 
-    // the async-safe way to build upon previous state vals and mitigate overwrite risk https://reactjs.org/docs/hooks-reference.html#functional-updates
-    setPresets((prevPresets) => {
-      const presetsCopy = [...prevPresets];
-      const numberToDelete = 1;
-      const indexOfMessageToDelete = presetsCopy.indexOf(message);
-      presetsCopy.splice(indexOfMessageToDelete, numberToDelete);
-      return presetsCopy;
-    });
+      setPresets((prevPresets) => {
+        return [...prevPresets, { id: generatedId, message: preset }];
+      });
+    } catch (err) {
+      console.error(err);
+    }
+    setMessage("") 
+    handleClose();
   }
 
-  function DeletePreset(message) {
-    getAll().then((dbRecords) => {
-      for (const record of dbRecords) {
-        if (record.message === message){
-          deleteRecord(record.id).then((event) => {
-            alert("Deleted!")
-          })
-        }}});
+
+  function deletePreset(id) {
+    deleteRecord(id).then(() => {
+      alert(`Deleted ${id}`);
+    });
+
+    setPresets((prevPresets) => {
+      const presetsCopy = [...prevPresets];
+      const indexOfRecordToDelete = presetsCopy.findIndex((p) => p.id === id);
+      const howManyToDelete = 1;
+      presetsCopy.splice(indexOfRecordToDelete, howManyToDelete);
+      return presetsCopy;
+    });
   }
 
   return (
@@ -118,23 +105,29 @@ export default function Main() {
                 </InputGroup>
               </Modal.Body>
             </Modal>
-            {/* js in jsx https://reactjs.org/docs/jsx-in-depth.html#javascript-expressions-as-children */}
             {presets.map((preset) => {
+              const { id, message } = preset;
               return (
-              <Dropdown.Item 
-              key={preset} 
-              onClick={handleChange} 
-              value={preset} 
-              type="text" 
-              as="button">
-                {preset}
-                <a onClick={() => {
-                  DeletePreset(message);
-                 }} className="deleteBtn" as="button">
-                  x
-                </a>
-              </Dropdown.Item>
-            )})}
+                <Dropdown.Item
+                  key={message}
+                  onClick={handleChange}
+                  value={message}
+                  type="text"
+                  as="button"
+                >
+                  {message}
+                  <span
+                    onClick={() => {
+                      deletePreset(id);
+                    }}
+                    className="deleteBtn"
+                    as="button"
+                  >
+                    x
+                  </span>
+                </Dropdown.Item>
+              );
+            })}
           </DropdownButton>
         </Nav>
         <Form inline>
