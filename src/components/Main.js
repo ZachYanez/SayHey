@@ -120,7 +120,6 @@ export default function Main() {
             </Modal>
             {/* js in jsx https://reactjs.org/docs/jsx-in-depth.html#javascript-expressions-as-children */}
             {presets.map((preset) => {
-              
               return (
               <Dropdown.Item 
               key={preset} 
