@@ -20,10 +20,11 @@
   align-items: center; 
 }
 
-/* .deleteBtn:hover{
-  background-color: black;
-  color: white;
-} */
+.Install{
+  padding-left: 5%;
+  font-size: small;
+  color: black;
+}
 
 
 .footerLink{
