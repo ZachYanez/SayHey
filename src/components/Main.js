@@ -62,7 +62,7 @@ export default function Main() {
 
   function deletePreset(id) {
     deleteRecord(id).then(() => {
-      alert(`Deleted ${id}`);
+      alert(`Deleted`);
     });
 
     setPresets((prevPresets) => {
