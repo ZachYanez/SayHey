@@ -39,7 +39,7 @@ Zach Yanez, Daniel Robertson
 No tests
 
 # License
-There is no license at this moment
+Copyright 
 
 
 # Questions
